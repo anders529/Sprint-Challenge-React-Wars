@@ -1,13 +1,20 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
 
-const App = () => {
-  // Try to think through what state you'll need for this app before starting. Then build out
-  // the state properties here.
-
-  // Fetch characters from the star wars api in an effect hook. Remember, anytime you have a 
-  // side effect in a component, you want to think about which state and/or props it should
-  // sync up with, if any.
+// Grabbing API here.
+const App = (Component) => {
+  constructor() {
+    super();
+    this.state = {
+      starWarsCharacters: [],
+      url: 'https://swapi.co/api/people/?page=', current: 1,
+      firstPage: 'https://swapi.co/api/people/',
+    };
+  }
+  // Going to mount the getCharacters API
+  componentDidMount() {
+    this.getCharacters('https://swapi.co/api/people/')
+  }
 
   return (
     <div className="App">
