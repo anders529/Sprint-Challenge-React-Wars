@@ -8,7 +8,7 @@ const App = () => {
   const [peepers, setPeepers] = useState([]);
 // Grabbing the API with axios.
   useEffect(() => {
-    axios.get('https://swapi.co/api/people/?page=')
+    axios.get('https://swapi.co/api/people/')
     .then(rspnse => {
       console.log(rspnse);
       setPeepers(rspnse.data.results);
@@ -23,9 +23,9 @@ const App = () => {
       {peepers.map((peeps, index) =>(
       <CharList
            key={index}
-           namez={peeps.name}
-           birthday={peeps.birth_year}
-           sex={peeps.gender}
+           name = {peeps.name}
+           birth_year = {peeps.birth_year}
+           gender = {peeps.gender}
       />
       ))}
     </div>
