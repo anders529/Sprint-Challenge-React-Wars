@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import CharList from './components/charlist';
-import Style from './components/styles';
+import axios from "axios";
+import CharList from './components/charlist.js';
 import './App.css';
 
 // Setting the state.
@@ -9,17 +9,25 @@ const App = () => {
 // Grabbing the API with axios.
   useEffect(() => {
     axios.get('https://swapi.co/api/people/?page=')
-    .then(response => {
-      console.log(response);
-      setPeepers(response.data.results);
+    .then(rspnse => {
+      console.log(rspnse);
+      setPeepers(rspnse.data.results);
     })
     .catch(err => console.log({err}));
   },[])
 
+  // Returning everything inside it's own card.
   return (
     <div className="App">
       <h1 className="Header">React Wars</h1>
-      {/* <CharList characters={this.state.starWarsCharacters}/> */}
+      {peepers.map((peeps, index) =>(
+      <CharList
+           key={index}
+           namez={peeps.name}
+           birthday={peeps.birth_year}
+           sex={peeps.gender}
+      />
+      ))}
     </div>
   );
 }
